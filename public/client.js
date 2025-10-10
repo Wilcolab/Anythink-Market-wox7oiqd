@@ -33,6 +33,9 @@ function calculate(operand1, operand2, operation) {
         case '/':
             uri += "?operation=divide";
             break;
+        case '^':
+            uri += "?operation=exponent";
+            break;
         default:
             setError();
             return;
@@ -142,6 +145,14 @@ document.addEventListener('keypress', (event) => {
         operationPressed(event.key);
     } else if (event.key == '=') {
         equalPressed();
+    }
+    else if (event.key == 'Enter') {
+        equalPressed();
+    }
+    else if (event.key == 'c') {
+        clearPressed();
+    } else if (event.key == 's') {
+        signPressed();
     }
 });
 
