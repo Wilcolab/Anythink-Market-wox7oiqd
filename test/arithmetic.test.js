@@ -94,7 +94,50 @@ describe('Arithmetic', function () {
     });
 
 // TODO: Challenge #1
- 
+
+
+    describe('Exponentiation', function () {
+        it('raises a positive integer to a positive integer power', function (done) {
+            request.get('/arithmetic?operation=exponent&operand1=2&operand2=3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 8 });
+                    done();
+                });
+        });
+        it('raises a positive integer to a negative integer power', function (done) {
+            request.get('/arithmetic?operation=exponent&operand1=2&operand2=-3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 0.125 });
+                    done();
+                });
+        });
+        it('raises a negative integer to a positive integer power', function (done) {
+            request.get('/arithmetic?operation=exponent&operand1=-2&operand2=3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: -8 });
+                    done();
+                });
+        });
+        it('raises a negative integer to a negative integer power', function (done) {
+            request.get('/arithmetic?operation=exponent&operand1=-2&operand2=-3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: -0.125 });
+                    done();
+                });
+        });
+        it('raises a positive integer to a floating point power', function (done) {
+            request.get('/arithmetic?operation=exponent&operand1=4&operand2=0.5')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 2 });
+                    done();
+                });
+        });
+    });
 
     describe('Multiplication', function () {
         it('multiplies two positive integers', function (done) {
